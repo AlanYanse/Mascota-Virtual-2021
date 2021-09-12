@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mascota Virtual 2021 JavaScript</title>
+    <style>
+
+        #pantalla{
+
+            width: 350px;
+            height: 350px;
+            border: 2px solid black;
+            background-color: azure;
+        }
+
+        table{
+            
+            margin: auto;
+            padding-top: 50px;
+            
+            
+        }
+
+        #contiene_imagen{
+            margin-top: 40%;
+            margin-left: 35%;
+        }
+
+      
+
+    </style>
+    
+    <script src="../JQuery/jquery-3.6.0.min.js"></script>
+
+    <script>
+
+        //-------------ZONA DE VARIABLES----------------
+
+        var interruptor;
+
+        var hilo_animacion;
+
+        
+
+        $(document).ready(function(){
+
+            var btn_detener = document.getElementById("detener");
+            btn_detener.addEventListener("click", detener_hilo , false);
+
+            
+            hilo_animacion = setInterval(animarAmeba, 2000);
+
+            
+        });
+
+
+        function animarAmeba(){
+
+            
+
+            if(interruptor == "on"){
+
+                $("#imagen").attr("src", "imagenes/ameba1.png");
+
+                interruptor = "off";
+
+            }else{
+
+                $("#imagen").attr("src", "imagenes/ameba2.png");
+                
+                interruptor = "on";
+
+            }
+
+            
+        }
+
+        function detener_hilo(){
+
+            clearInterval(hilo_animacion);
+
+
+        }
+
+
+
+    </script>
+</head>
+<body>
+
+    
+    
+
+    <div id="pantalla">
+
+        <div id="contiene_imagen">
+
+            <img src="imagenes/ameba1.png" id="imagen" alt="">
+    
+        </div>
+                
+        <table>
+            <tr>
+                <td><input type="button" value="Alimentar" id="alimentar"></td>
+                <td><input type="button" value="Examinar" id="examinar"></td>
+                <td><input type="button" value="Revivir" id="revivir"></td>
+                <td><input type="button" value="Detener" id="detener"></td>
+            </tr>
+        </table>
+
+    </div>
+    
+</body>
+</html>
