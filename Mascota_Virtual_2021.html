@@ -27,7 +27,23 @@
             
             margin: auto;
             margin-top: 20px;
-                        
+                                    
+        }
+
+        #table1{
+
+            text-align: center;
+        }
+
+        #table1 td{
+
+            padding: 20px;
+        }
+
+        #table1 tr p{
+
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
         }
 
         #contiene_imagen{
@@ -52,6 +68,15 @@
 
         //-------------ZONA DE VARIABLES----------------
 
+                        
+        var mascota = new Object();
+        
+        mascota.nombre = "dracu dracu dino kun";
+        mascota.edad = 0;
+        mascota.vida = 100;
+        mascota.hambre = 50;
+        mascota.estaVivo = true;
+        
         var interruptor;
 
         var hilo_animacion;
@@ -60,9 +85,7 @@
 
         $(document).ready(function(){
 
-            //var btn_detener = document.getElementById("detener");
-            //btn_detener.addEventListener("click", detenerHilo , false);
-
+                        
             $("#pantalla").hide(); //Al cargar la página se oculta la pantalla principal
 
             // Se comienza a gestionar los eventos de click
@@ -71,19 +94,24 @@
 
             $("#detener").click(detenerHilo);
 
-                                         
+                                                     
         });
 
         //-----------------ZONA DE FUNCIONES---------------------
 
         function iniciar(){
 
-            $("#panel1").hide()
+            $("#panel1").hide();
 
             $("#pantalla").show();
 
             hilo_animacion = setInterval(animarAmeba, 2000);
 
+            mascota.nombre = $("#nombre_mascota").val();
+
+            
+            console.log(mascota.vida);
+            console.log(mascota.nombre);
         }
 
 
@@ -124,8 +152,14 @@
 
     <div id="panel1">
 
-        <table>
+        <table id="table1">
 
+
+            <tr>
+                
+                <td><p>Introduce nombre para tu mascota</p><input type="text" id="nombre_mascota" name="nombre" required></td>
+
+            </tr>
             <tr>
                 
                 <td><input type="button" id="boton_inicio" value="iniciar"></td>
@@ -154,6 +188,24 @@
 
             <img src="imagenes/ameba1.png" id="imagen" alt="">
     
+        </div>
+
+        <div id="panel_info">
+
+            <table id="table_info">
+                
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+            
+            </table>
+
         </div>
 
     </div>
