@@ -46,9 +46,23 @@
             font-weight: bold;
         }
 
+        #panel_info{
+
+            position: relative;
+            float: right;
+            margin-top: 10px;
+            
+        }
+
+        #table_info{
+
+            font-family: 'Courier New', Courier, monospace;
+            
+        }
+
         #contiene_imagen{
             margin-top: 40%;
-            margin-left: 35%;
+            margin-left: 25%;
         }
 
         input{
@@ -79,9 +93,14 @@
         
         var interruptor;
 
+        
         var hilo_animacion;
+        var hilo_edad;
+        var hilo_hambre;
 
         
+
+        //-------------COMIENZO DEL CÓDIGO JQUERY----------
 
         $(document).ready(function(){
 
@@ -105,11 +124,35 @@
 
             $("#pantalla").show();
 
-            hilo_animacion = setInterval(animarAmeba, 2000);
+            //-------------ZONA DE EJECUCIÓN DE HILOS--------------
 
-            mascota.nombre = $("#nombre_mascota").val();
+            hilo_vida = setInterval(()=>{
+
+                mascota.vida -= 2;
+
+                $("#indicador_vida").html("<p>Vida: " + mascota.vida + "</p>");
 
             
+            }, 60000); // Se ejecuta el hilo de la vida una vez por minuto
+
+            hilo_edad = setInterval(()=>{
+
+                mascota.edad += 1;
+
+                $("#indicador_edad").html("<p>Edad: " + mascota.edad + "</p>");
+
+            },120000); // Cada 2 minutos 
+
+            hilo_animacion = setInterval(animarAmeba, 2000); // S
+
+            
+            
+            // Visualización del nombre en panel y realización de pruebas por consola
+            
+            
+            mascota.nombre = $("#nombre_mascota").val();
+            $("#indicador_nombre").html("<p>" + mascota.nombre + "</p>");
+           
             console.log(mascota.vida);
             console.log(mascota.nombre);
         }
@@ -133,6 +176,15 @@
 
             }
 
+            /*
+
+             Transplantar este bloque de código a un thread que incremente las variables
+
+             mascota.edad ++;
+
+             $("#indicador_edad").html("<p>" + mascota.edad + "</p>");
+
+            */
             
         }
 
@@ -184,29 +236,34 @@
             </tr>
         </table>
 
+        <div id="panel_info">
+
+            <table id="table_info">
+                
+                <tr>
+                    <td><p id="indicador_nombre"></p></td>
+                </tr>
+                <tr>
+                    <td><p id="indicador_vida">Vida :100</p></td>
+                </tr>
+                <tr>
+                    <td><p id="indicador_edad">Edad :0</p></td>
+                </tr>
+                <tr>
+                    <td><p id="indicador_hambre"> Nivel de hambre: 50</p></td>
+                </tr>
+            
+            </table>
+
+        </div>
+
         <div id="contiene_imagen">
 
             <img src="imagenes/ameba1.png" id="imagen" alt="">
     
         </div>
 
-        <div id="panel_info">
-
-            <table id="table_info">
-                
-                <tr>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                </tr>
-            
-            </table>
-
-        </div>
+        
 
     </div>
     
